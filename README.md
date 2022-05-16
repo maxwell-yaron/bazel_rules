@@ -6,7 +6,7 @@ Build rules for various third party libraries
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")                       
 http_archive(
   name = "bazel_rules",
-  urls = ["https://github.com/maxwell-yaron/bazel_rules/tarball/master"],
+  urls = ["https://github.com/maxwell-yaron/bazel_rules/tarball/main"],
   type = [".tar.gz"],
 )
 
