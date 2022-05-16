@@ -66,9 +66,22 @@ cc_library(
   ],
 )
 
+py_binary(                       
+  name = "misra",                
+  srcs = [                       
+    "addons/misra.py",           
+  ],                             
+  visibility = ["//visibility:public"],
+)                                
+
 cc_binary(
   name = "cppcheck",
   srcs = ["cli/main.cpp"],
   deps = [":cli"],
   visibility = ["//visibility:public"],
+)
+
+sh_binary(                        
+  name = "cppcheck-htmlreport",    
+  srcs = ["htmlreport/cppcheck-htmlreport"],
 )
