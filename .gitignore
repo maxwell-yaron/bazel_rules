@@ -1,0 +1,10 @@
+*.orig
+*~
+*.pyc
+*.swp
+/bazel-*
+/._tmp
+.cache
+core
+/build
+/doc

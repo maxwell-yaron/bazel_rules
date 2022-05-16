@@ -1,0 +1,74 @@
+filegroup(
+  name = "gtest_cfg",
+  srcs = [
+    "cfg/googletest.cfg",
+  ],
+)
+
+cc_library(
+  name = "tinyxml",
+  hdrs = ["externals/tinyxml2/tinyxml2.h"],
+  srcs = ["externals/tinyxml2/tinyxml2.cpp"],
+  includes = ["externals/tinyxml2"],
+)
+
+cc_library(
+  name = "simplecpp",
+  hdrs = ["externals/simplecpp/simplecpp.h"],
+  srcs = ["externals/simplecpp/simplecpp.cpp"],
+  includes = ["externals/simplecpp"],
+)
+
+cc_library(
+  name = "picojson",
+  hdrs = ["externals/picojson/picojson.h"],
+  includes = ["externals/picojson"],
+)
+
+cc_library(
+  name = "lib",
+  srcs = glob(["lib/*.cpp"]),
+  hdrs = glob(["lib/*.h"]),
+  deps = [
+    ":tinyxml",
+    ":simplecpp",
+    ":picojson",
+  ],
+  copts = [
+    "-Wno-sign-compare",
+    "-Wno-maybe-uninitialized",
+    "-Wno-multichar",
+    "-Wno-switch",
+  ],
+  includes = ["lib"],
+)
+
+cc_library(
+  name = "cli",
+  hdrs = [
+    "cli/cmdlineparser.h",
+    "cli/cppcheckexecutor.h",
+    "cli/filelister.h",
+    "cli/threadexecutor.h",
+  ],
+  srcs = [
+    "cli/cmdlineparser.cpp",
+    "cli/cppcheckexecutor.cpp",
+    "cli/filelister.cpp",
+    "cli/threadexecutor.cpp",
+  ],
+  deps = [
+    ":lib",
+  ],
+  copts = [
+    "-Wno-deprecated-declarations",
+    "-Wno-maybe-uninitialized",
+  ],
+)
+
+cc_binary(
+  name = "cppcheck",
+  srcs = ["cli/main.cpp"],
+  deps = [":cli"],
+  visibility = ["//visibility:public"],
+)
