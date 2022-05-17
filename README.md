@@ -6,11 +6,8 @@ Build rules for various third party libraries
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")                       
 http_archive(
   name = "bazel_rules",    
-  urls = ["https://github.com/maxwell-yaron/bazel_rules/tarball/main"],
-  strip_prefix = "maxwell-yaron-bazel_rules-e879818",
-  type = ".tar.gz",               
+  urls = ["https://github.com/maxwell-yaron/bazel_rules/archive/refs/tags/<RELEASE>.tar.gz"],
+  strip_prefix = "bazel_rules-<RELEASE>",
+  sha256 = "<SHA256>"
 )                                 
-
-load("@bazel_tools//:deps.bzl", "cppcheck_deps")
-cppcheck_deps();
 ```

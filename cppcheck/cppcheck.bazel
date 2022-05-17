@@ -1,8 +1,8 @@
 filegroup(
-  name = "gtest_cfg",
-  srcs = [
-    "cfg/googletest.cfg",
-  ],
+  name = "filesdir",
+  srcs = glob([
+    "**/**",
+  ]),
 )
 
 cc_library(
@@ -39,6 +39,10 @@ cc_library(
     "-Wno-maybe-uninitialized",
     "-Wno-multichar",
     "-Wno-switch",
+    "-DFILESDIR=\\\"external/cppcheck\\\"",
+  ],
+  data = [
+    ":filesdir",
   ],
   includes = ["lib"],
 )
@@ -65,14 +69,6 @@ cc_library(
     "-Wno-maybe-uninitialized",
   ],
 )
-
-py_binary(                       
-  name = "misra",                
-  srcs = [                       
-    "addons/misra.py",           
-  ],                             
-  visibility = ["//visibility:public"],
-)                                
 
 cc_binary(
   name = "cppcheck",
