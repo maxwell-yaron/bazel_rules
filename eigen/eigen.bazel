@@ -1,0 +1,13 @@
+cc_library(
+  name = "eigen",
+  includes = ["."],
+  hdrs = glob(["Eigen/**"]),
+  visibility = ["//visibility:public"],
+)
+
+cc_library(
+  name = "unsupported",
+  includes = ["."],
+  hdrs = glob(["unsupported/**/**"]),
+  visibility = ["//visibility:public"],
+)

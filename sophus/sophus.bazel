@@ -1,0 +1,28 @@
+cc_library(
+  name = "sophus",
+  includes = ["."],
+  hdrs = glob(["sophus/*.hpp"]),
+  defines = [
+    "SOPHUS_USE_BASIC_LOGGING=1",
+  ],
+  visibility = ["//visibility:public"],
+)
+
+cc_library(
+  name = "test_lib",
+  hdrs = ["test/core/tests.hpp"],
+  includes = ["test/core"],
+  deps = [
+    "@eigen//:unsupported",
+  ],
+)
+
+cc_test(
+  name = "se3_test",
+  srcs = ["test/core/test_se3.cpp"],
+  deps = [
+    ":test_lib",
+    ":sophus",
+    "@eigen//:eigen",
+  ],
+)

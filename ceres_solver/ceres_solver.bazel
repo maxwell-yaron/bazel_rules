@@ -1,0 +1,12 @@
+cc_library(
+  name = "ceres_solver",
+  hdrs = [
+    "include/ceres.hpp",
+  ],
+  deps = [
+    "@eigen//:eigen",
+    "@glog//:glog",
+    "@gflags//:gflags",
+  ],
+  visibility = ["//visibility:public"],
+)

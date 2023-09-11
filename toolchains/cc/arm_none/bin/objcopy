@@ -1,0 +1,3 @@
+#!/bin/bash --norc
+
+exec external/linux-arm_none/bin/arm-none-eabi-objcopy "$@"

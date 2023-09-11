@@ -1,0 +1,25 @@
+cc_library(
+  name = "nanoflann",
+  hdrs = ["include/nanoflann.hpp"],
+  includes = ["include"],
+  visibility = ["//visibility:public"],
+)
+
+cc_library(
+  name = "utils",
+  hdrs = [
+    "examples/utils.h",
+    "examples/KDTreeVectorOfVectorsAdaptor.h",
+  ],
+  includes = ["tests"],
+)
+
+cc_test(
+  name = "nanoflann_test",
+  srcs = ["tests/test_main.cpp"],
+  deps = [
+    "@gtest//:gtest",
+    ":nanoflann",
+    ":utils",
+  ],
+)
